@@ -9,6 +9,10 @@ import SwiftUI
 
 struct FlightSearchView: View {
     @State private var selectedFlightType = 0
+    @State private var selectedDepartureAirport: Airport? = nil
+    @State private var selectedArrivalAirport: Airport? = nil
+    @State private var isSelectingDepartureAirport: Bool = false
+    @State private var isSelectingArrivalAirport: Bool = false
     
     let flightTypes = ["One way", "Round trip", "Multi-city"]
     
@@ -23,13 +27,25 @@ struct FlightSearchView: View {
                 .pickerStyle(SegmentedPickerStyle())
             }
             Section(header: Text("Where would you like to go?")) {
-                NavigationLink(destination: AirportSelectionView()) {
-                    Label("From", systemImage: "airplane.departure")
+                Button(action: {
+                    isSelectingDepartureAirport = true
+                }) {
+                    Label(selectedDepartureAirport != nil ? selectedDepartureAirport!.iataCode : "From", systemImage: "airplane.departure")
+                        .foregroundColor(selectedDepartureAirport != nil ? .blue : .black)
                 }
-                NavigationLink(destination: AirportSelectionView()) {
-                    Label("To", systemImage: "airplane.arrival")
+                Button(action: {
+                    isSelectingArrivalAirport = true
+                }) {
+                    Label(selectedArrivalAirport != nil ? selectedArrivalAirport!.iataCode : "To", systemImage: "airplane.arrival")
+                        .foregroundColor(selectedArrivalAirport != nil ? .blue : .black)
                 }
             }
+        }
+        .sheet(isPresented: $isSelectingDepartureAirport) {
+            AirportSelectionView(selectedAirport: $selectedDepartureAirport)
+        }
+        .sheet(isPresented: $isSelectingArrivalAirport) {
+            AirportSelectionView(selectedAirport: $selectedArrivalAirport)
         }
     }
 }
