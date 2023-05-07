@@ -16,6 +16,14 @@
 		C27EF5EC2A07C2BA000CA41F /* CeyehatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27EF5EB2A07C2BA000CA41F /* CeyehatTests.swift */; };
 		C27EF5F62A07C2BA000CA41F /* CeyehatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27EF5F52A07C2BA000CA41F /* CeyehatUITests.swift */; };
 		C27EF5F82A07C2BA000CA41F /* CeyehatUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27EF5F72A07C2BA000CA41F /* CeyehatUITestsLaunchTests.swift */; };
+		C27EF6052A07C39B000CA41F /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27EF6042A07C39B000CA41F /* WelcomeView.swift */; };
+		C27EF6062A07C39B000CA41F /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27EF6042A07C39B000CA41F /* WelcomeView.swift */; };
+		C27EF6082A07C3DC000CA41F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27EF6072A07C3DC000CA41F /* HomeView.swift */; };
+		C27EF6092A07C3DC000CA41F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27EF6072A07C3DC000CA41F /* HomeView.swift */; };
+		C27EF60B2A07C3FD000CA41F /* FlightSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27EF60A2A07C3FD000CA41F /* FlightSearchView.swift */; };
+		C27EF60C2A07C3FD000CA41F /* FlightSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27EF60A2A07C3FD000CA41F /* FlightSearchView.swift */; };
+		C27EF60E2A07C41E000CA41F /* CheckinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27EF60D2A07C41E000CA41F /* CheckinView.swift */; };
+		C27EF60F2A07C41E000CA41F /* CheckinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27EF60D2A07C41E000CA41F /* CheckinView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +56,10 @@
 		C27EF5F12A07C2BA000CA41F /* CeyehatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CeyehatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C27EF5F52A07C2BA000CA41F /* CeyehatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CeyehatUITests.swift; sourceTree = "<group>"; };
 		C27EF5F72A07C2BA000CA41F /* CeyehatUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CeyehatUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C27EF6042A07C39B000CA41F /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		C27EF6072A07C3DC000CA41F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		C27EF60A2A07C3FD000CA41F /* FlightSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightSearchView.swift; sourceTree = "<group>"; };
+		C27EF60D2A07C41E000CA41F /* CheckinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,8 +110,8 @@
 		C27EF5D42A07C2B8000CA41F /* Ceyehat */ = {
 			isa = PBXGroup;
 			children = (
+				C27EF6102A07C435000CA41F /* Views */,
 				C27EF5D52A07C2B8000CA41F /* CeyehatApp.swift */,
-				C27EF5D72A07C2B8000CA41F /* ContentView.swift */,
 				C27EF5D92A07C2BA000CA41F /* Assets.xcassets */,
 				C27EF5DE2A07C2BA000CA41F /* Persistence.swift */,
 				C27EF5E02A07C2BA000CA41F /* Ceyehat.xcdatamodeld */,
@@ -131,6 +143,18 @@
 				C27EF5F72A07C2BA000CA41F /* CeyehatUITestsLaunchTests.swift */,
 			);
 			path = CeyehatUITests;
+			sourceTree = "<group>";
+		};
+		C27EF6102A07C435000CA41F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C27EF5D72A07C2B8000CA41F /* ContentView.swift */,
+				C27EF6042A07C39B000CA41F /* WelcomeView.swift */,
+				C27EF6072A07C3DC000CA41F /* HomeView.swift */,
+				C27EF60A2A07C3FD000CA41F /* FlightSearchView.swift */,
+				C27EF60D2A07C41E000CA41F /* CheckinView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,8 +287,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C27EF60B2A07C3FD000CA41F /* FlightSearchView.swift in Sources */,
+				C27EF6052A07C39B000CA41F /* WelcomeView.swift in Sources */,
 				C27EF5DF2A07C2BA000CA41F /* Persistence.swift in Sources */,
 				C27EF5D82A07C2B8000CA41F /* ContentView.swift in Sources */,
+				C27EF60E2A07C41E000CA41F /* CheckinView.swift in Sources */,
+				C27EF6082A07C3DC000CA41F /* HomeView.swift in Sources */,
 				C27EF5D62A07C2B8000CA41F /* CeyehatApp.swift in Sources */,
 				C27EF5E22A07C2BA000CA41F /* Ceyehat.xcdatamodeld in Sources */,
 			);
@@ -283,6 +311,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C27EF5F82A07C2BA000CA41F /* CeyehatUITestsLaunchTests.swift in Sources */,
+				C27EF60C2A07C3FD000CA41F /* FlightSearchView.swift in Sources */,
+				C27EF60F2A07C41E000CA41F /* CheckinView.swift in Sources */,
+				C27EF6092A07C3DC000CA41F /* HomeView.swift in Sources */,
+				C27EF6062A07C39B000CA41F /* WelcomeView.swift in Sources */,
 				C27EF5F62A07C2BA000CA41F /* CeyehatUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
