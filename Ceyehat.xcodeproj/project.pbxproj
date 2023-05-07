@@ -32,6 +32,10 @@
 		C27EF6212A07CDF7000CA41F /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27EF61F2A07CDF7000CA41F /* Formatters.swift */; };
 		C27EF6232A07D3B8000CA41F /* Airport.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27EF6222A07D3B8000CA41F /* Airport.swift */; };
 		C27EF6242A07D3B8000CA41F /* Airport.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27EF6222A07D3B8000CA41F /* Airport.swift */; };
+		C27EF6262A07D4C5000CA41F /* AirportModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27EF6252A07D4C5000CA41F /* AirportModelTest.swift */; };
+		C27EF6282A07D68C000CA41F /* FlightSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27EF6272A07D68C000CA41F /* FlightSearch.swift */; };
+		C27EF6292A07D68C000CA41F /* FlightSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27EF6272A07D68C000CA41F /* FlightSearch.swift */; };
+		C27EF62B2A07D6C4000CA41F /* FlightSearchModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27EF62A2A07D6C4000CA41F /* FlightSearchModelTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +77,9 @@
 		C27EF61C2A07CD4A000CA41F /* FlightModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightModelTest.swift; sourceTree = "<group>"; };
 		C27EF61F2A07CDF7000CA41F /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		C27EF6222A07D3B8000CA41F /* Airport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Airport.swift; sourceTree = "<group>"; };
+		C27EF6252A07D4C5000CA41F /* AirportModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportModelTest.swift; sourceTree = "<group>"; };
+		C27EF6272A07D68C000CA41F /* FlightSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightSearch.swift; sourceTree = "<group>"; };
+		C27EF62A2A07D6C4000CA41F /* FlightSearchModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightSearchModelTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +155,8 @@
 			children = (
 				C27EF5EB2A07C2BA000CA41F /* CeyehatTests.swift */,
 				C27EF61C2A07CD4A000CA41F /* FlightModelTest.swift */,
+				C27EF6252A07D4C5000CA41F /* AirportModelTest.swift */,
+				C27EF62A2A07D6C4000CA41F /* FlightSearchModelTest.swift */,
 			);
 			path = CeyehatTests;
 			sourceTree = "<group>";
@@ -179,6 +188,7 @@
 			children = (
 				C27EF6192A07CBC6000CA41F /* Flight.swift */,
 				C27EF6222A07D3B8000CA41F /* Airport.swift */,
+				C27EF6272A07D68C000CA41F /* FlightSearch.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -322,6 +332,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C27EF61A2A07CBC6000CA41F /* Flight.swift in Sources */,
+				C27EF6282A07D68C000CA41F /* FlightSearch.swift in Sources */,
 				C27EF60B2A07C3FD000CA41F /* FlightSearchView.swift in Sources */,
 				C27EF6052A07C39B000CA41F /* WelcomeView.swift in Sources */,
 				C27EF5DF2A07C2BA000CA41F /* Persistence.swift in Sources */,
@@ -340,6 +351,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C27EF6242A07D3B8000CA41F /* Airport.swift in Sources */,
+				C27EF6292A07D68C000CA41F /* FlightSearch.swift in Sources */,
+				C27EF6262A07D4C5000CA41F /* AirportModelTest.swift in Sources */,
+				C27EF62B2A07D6C4000CA41F /* FlightSearchModelTest.swift in Sources */,
 				C27EF5EC2A07C2BA000CA41F /* CeyehatTests.swift in Sources */,
 				C27EF61B2A07CBC6000CA41F /* Flight.swift in Sources */,
 				C27EF6212A07CDF7000CA41F /* Formatters.swift in Sources */,
