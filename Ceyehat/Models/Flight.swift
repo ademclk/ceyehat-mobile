@@ -7,6 +7,10 @@
 
 import Foundation
 
+/// The `Flight` model represents a single flight.
+///
+/// Each flight has a unique flight number, airline and aircraft names, departure and arrival times,
+/// and ticket prices for economy, comfort, and business classes.
 struct Flight: Hashable, Codable {
     let flightNumber: String
     let airlineName: String
@@ -21,6 +25,17 @@ struct Flight: Hashable, Codable {
         case flightNumber, airlineName, aircraftName, departureHour, arrivalHour, economyPrice, comfortPrice, businessPrice
     }
     
+    /// Initializes a new instance of the `Flight` model.
+    ///
+    /// - Parameters:
+    ///   - flightNumber: The unique flight number.
+    ///   - airlineName: The name of the airline.
+    ///   - aircraftName: The name of the aircraft.
+    ///   - departureHour: The departure time of the flight.
+    ///   - arrivalHour: The arrival time of the flight.
+    ///   - economyPrice: The price of an economy class ticket.
+    ///   - comfortPrice: The price of a comfort class ticket.
+    ///   - businessPrice: The price of a business class ticket.
     init(flightNumber: String, airlineName: String, aircraftName: String, departureHour: Date, arrivalHour: Date, economyPrice: Double, comfortPrice: Double, businessPrice: Double) {
         self.flightNumber = flightNumber
         self.airlineName = airlineName
@@ -32,6 +47,12 @@ struct Flight: Hashable, Codable {
         self.businessPrice = businessPrice
     }
     
+    /// Initializes a new instance of the `Flight` model by decoding a JSON object.
+    ///
+    /// - Parameters:
+    ///   - decoder: The decoder that decodes the JSON object.
+    ///
+    /// - Throws: An error if decoding fails.
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         flightNumber = try container.decode(String.self, forKey: .flightNumber)
