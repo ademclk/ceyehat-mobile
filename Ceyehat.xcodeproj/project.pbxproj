@@ -27,6 +27,9 @@
 		C27EF6172A07CA6D000CA41F /* WelcomeViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27EF6162A07CA6D000CA41F /* WelcomeViewUITests.swift */; };
 		C27EF61A2A07CBC6000CA41F /* Flight.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27EF6192A07CBC6000CA41F /* Flight.swift */; };
 		C27EF61B2A07CBC6000CA41F /* Flight.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27EF6192A07CBC6000CA41F /* Flight.swift */; };
+		C27EF61D2A07CD4A000CA41F /* FlightModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27EF61C2A07CD4A000CA41F /* FlightModelTest.swift */; };
+		C27EF6202A07CDF7000CA41F /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27EF61F2A07CDF7000CA41F /* Formatters.swift */; };
+		C27EF6212A07CDF7000CA41F /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27EF61F2A07CDF7000CA41F /* Formatters.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +68,8 @@
 		C27EF60D2A07C41E000CA41F /* CheckinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinView.swift; sourceTree = "<group>"; };
 		C27EF6162A07CA6D000CA41F /* WelcomeViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewUITests.swift; sourceTree = "<group>"; };
 		C27EF6192A07CBC6000CA41F /* Flight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flight.swift; sourceTree = "<group>"; };
+		C27EF61C2A07CD4A000CA41F /* FlightModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightModelTest.swift; sourceTree = "<group>"; };
+		C27EF61F2A07CDF7000CA41F /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +120,7 @@
 		C27EF5D42A07C2B8000CA41F /* Ceyehat */ = {
 			isa = PBXGroup;
 			children = (
+				C27EF61E2A07CDE8000CA41F /* Utils */,
 				C27EF6182A07CBB5000CA41F /* Models */,
 				C27EF6102A07C435000CA41F /* Views */,
 				C27EF5D52A07C2B8000CA41F /* CeyehatApp.swift */,
@@ -138,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				C27EF5EB2A07C2BA000CA41F /* CeyehatTests.swift */,
+				C27EF61C2A07CD4A000CA41F /* FlightModelTest.swift */,
 			);
 			path = CeyehatTests;
 			sourceTree = "<group>";
@@ -170,6 +177,14 @@
 				C27EF6192A07CBC6000CA41F /* Flight.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		C27EF61E2A07CDE8000CA41F /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				C27EF61F2A07CDF7000CA41F /* Formatters.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -310,6 +325,7 @@
 				C27EF60E2A07C41E000CA41F /* CheckinView.swift in Sources */,
 				C27EF6082A07C3DC000CA41F /* HomeView.swift in Sources */,
 				C27EF5D62A07C2B8000CA41F /* CeyehatApp.swift in Sources */,
+				C27EF6202A07CDF7000CA41F /* Formatters.swift in Sources */,
 				C27EF5E22A07C2BA000CA41F /* Ceyehat.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -320,6 +336,8 @@
 			files = (
 				C27EF5EC2A07C2BA000CA41F /* CeyehatTests.swift in Sources */,
 				C27EF61B2A07CBC6000CA41F /* Flight.swift in Sources */,
+				C27EF6212A07CDF7000CA41F /* Formatters.swift in Sources */,
+				C27EF61D2A07CD4A000CA41F /* FlightModelTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
