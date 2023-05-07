@@ -46,7 +46,7 @@ class FlightTests: XCTestCase {
         let decoder = JSONDecoder()
         
         do {
-            let flight = try decoder.decode(Flight.self, from: json)
+            _ = try decoder.decode(Flight.self, from: json)
             testFlightModel()
         } catch {
             XCTFail("Failed to decode JSON: \(error.localizedDescription)")
