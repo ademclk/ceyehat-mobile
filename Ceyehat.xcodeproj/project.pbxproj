@@ -30,6 +30,8 @@
 		C27EF61D2A07CD4A000CA41F /* FlightModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27EF61C2A07CD4A000CA41F /* FlightModelTest.swift */; };
 		C27EF6202A07CDF7000CA41F /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27EF61F2A07CDF7000CA41F /* Formatters.swift */; };
 		C27EF6212A07CDF7000CA41F /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27EF61F2A07CDF7000CA41F /* Formatters.swift */; };
+		C27EF6232A07D3B8000CA41F /* Airport.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27EF6222A07D3B8000CA41F /* Airport.swift */; };
+		C27EF6242A07D3B8000CA41F /* Airport.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27EF6222A07D3B8000CA41F /* Airport.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +72,7 @@
 		C27EF6192A07CBC6000CA41F /* Flight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flight.swift; sourceTree = "<group>"; };
 		C27EF61C2A07CD4A000CA41F /* FlightModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightModelTest.swift; sourceTree = "<group>"; };
 		C27EF61F2A07CDF7000CA41F /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
+		C27EF6222A07D3B8000CA41F /* Airport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Airport.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				C27EF6192A07CBC6000CA41F /* Flight.swift */,
+				C27EF6222A07D3B8000CA41F /* Airport.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -325,6 +329,7 @@
 				C27EF60E2A07C41E000CA41F /* CheckinView.swift in Sources */,
 				C27EF6082A07C3DC000CA41F /* HomeView.swift in Sources */,
 				C27EF5D62A07C2B8000CA41F /* CeyehatApp.swift in Sources */,
+				C27EF6232A07D3B8000CA41F /* Airport.swift in Sources */,
 				C27EF6202A07CDF7000CA41F /* Formatters.swift in Sources */,
 				C27EF5E22A07C2BA000CA41F /* Ceyehat.xcdatamodeld in Sources */,
 			);
@@ -334,6 +339,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C27EF6242A07D3B8000CA41F /* Airport.swift in Sources */,
 				C27EF5EC2A07C2BA000CA41F /* CeyehatTests.swift in Sources */,
 				C27EF61B2A07CBC6000CA41F /* Flight.swift in Sources */,
 				C27EF6212A07CDF7000CA41F /* Formatters.swift in Sources */,
