@@ -6,30 +6,50 @@
 //
 
 import XCTest
+@testable import Ceyehat
 
-final class FlightModelTest: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+class FlightTests: XCTestCase {
+    
+    func testFlightModel() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        
+        let departureHour = dateFormatter.date(from: "2023-05-10T09:00:00.000Z")!
+        let arrivalHour = dateFormatter.date(from: "2023-05-10T12:00:00.000Z")!
+        
+        let flight = Flight(flightNumber: "AA123", airlineName: "American Airlines", aircraftName: "Boeing 737", departureHour: departureHour, arrivalHour: arrivalHour, economyPrice: 500.0, comfortPrice: 700.0, businessPrice: 1200.0)
+        
+        XCTAssertEqual(flight.flightNumber, "AA123")
+        XCTAssertEqual(flight.airlineName, "American Airlines")
+        XCTAssertEqual(flight.aircraftName, "Boeing 737")
+        XCTAssertEqual(flight.departureHour, departureHour)
+        XCTAssertEqual(flight.arrivalHour, arrivalHour)
+        XCTAssertEqual(flight.economyPrice, 500.0)
+        XCTAssertEqual(flight.comfortPrice, 700.0)
+        XCTAssertEqual(flight.businessPrice, 1200.0)
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    
+    func testFlightModelJSONDecoding() {
+        let json = """
+        {
+            "flightNumber": "AA123",
+            "airlineName": "American Airlines",
+            "aircraftName": "Boeing 737",
+            "departureHour": "2023-05-10T09:00:00.000Z",
+            "arrivalHour": "2023-05-10T12:00:00.000Z",
+            "economyPrice": 500.0,
+            "comfortPrice": 700.0,
+            "businessPrice": 1200.0
+        }
+        """.data(using: .utf8)!
+        
+        let decoder = JSONDecoder()
+        
+        do {
+            let flight = try decoder.decode(Flight.self, from: json)
+            testFlightModel()
+        } catch {
+            XCTFail("Failed to decode JSON: \(error.localizedDescription)")
         }
     }
-
 }
