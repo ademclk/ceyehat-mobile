@@ -24,6 +24,7 @@
 		C27EF60C2A07C3FD000CA41F /* FlightSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27EF60A2A07C3FD000CA41F /* FlightSearchView.swift */; };
 		C27EF60E2A07C41E000CA41F /* CheckinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27EF60D2A07C41E000CA41F /* CheckinView.swift */; };
 		C27EF60F2A07C41E000CA41F /* CheckinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27EF60D2A07C41E000CA41F /* CheckinView.swift */; };
+		C27EF6172A07CA6D000CA41F /* WelcomeViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27EF6162A07CA6D000CA41F /* WelcomeViewUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		C27EF6072A07C3DC000CA41F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		C27EF60A2A07C3FD000CA41F /* FlightSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightSearchView.swift; sourceTree = "<group>"; };
 		C27EF60D2A07C41E000CA41F /* CheckinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckinView.swift; sourceTree = "<group>"; };
+		C27EF6162A07CA6D000CA41F /* WelcomeViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewUITests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +143,7 @@
 			children = (
 				C27EF5F52A07C2BA000CA41F /* CeyehatUITests.swift */,
 				C27EF5F72A07C2BA000CA41F /* CeyehatUITestsLaunchTests.swift */,
+				C27EF6162A07CA6D000CA41F /* WelcomeViewUITests.swift */,
 			);
 			path = CeyehatUITests;
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C27EF6172A07CA6D000CA41F /* WelcomeViewUITests.swift in Sources */,
 				C27EF5F82A07C2BA000CA41F /* CeyehatUITestsLaunchTests.swift in Sources */,
 				C27EF60C2A07C3FD000CA41F /* FlightSearchView.swift in Sources */,
 				C27EF60F2A07C41E000CA41F /* CheckinView.swift in Sources */,
