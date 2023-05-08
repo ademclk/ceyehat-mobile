@@ -13,7 +13,7 @@ struct CeyehatApp: App {
 
     var body: some Scene {
         WindowGroup {
-            WelcomeView()
+            HomeView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
