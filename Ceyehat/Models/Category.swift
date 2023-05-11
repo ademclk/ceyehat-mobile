@@ -15,7 +15,7 @@ struct Category: Identifiable {
 
 let sampleCategories = [
     Category(name: "Tarihi Yerler", iconName: "clock.arrow.circlepath"),
-    Category(name: "Plajlar", iconName: "umbrella"),
+    Category(name: "Plajlar", iconName: "beach.umbrella"),
     Category(name: "Doğa Aktiviteleri", iconName: "leaf.arrow.circlepath"),
     Category(name: "Gastronomi", iconName: "fork.knife.circle")
 ]
