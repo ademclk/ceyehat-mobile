@@ -6,11 +6,14 @@
 //
 
 import SwiftUI
+import WeatherKit
+import CoreLocation
 
 /// WelcomeView displays options to navigate to the FlightSearchView and CheckinView.
 struct WelcomeView: View {
-    let popularDestinations: [String] = ["İstanbul", "New York", "Paris", "London", "Tokyo"]
-    
+    @StateObject var locationDataManager = LocationDataManager()
+    @ObservedObject var weatherKitManager = WeatherKitManager()
+
     var body: some View {
         NavigationView {
             ScrollView {
@@ -18,7 +21,6 @@ struct WelcomeView: View {
                     welcomeSection
                     descriptionSection
                     actionButtonsSection
-                    popularDestinationsSection
                     specialOffersSection
                     travelTipsSection
                 }
@@ -41,11 +43,27 @@ struct WelcomeView: View {
         .padding()
     }
     
-    private var descriptionSection: some View {
-        Text("TEST")
-            .font(.body)
-            .padding(.horizontal)
+    private func fetchWeather() async throws -> Weather {
+        let locationService = LocationDataManager()
+        let weatherService = WeatherService()
+        let location = CLLocation(latitude: locationService.locationManager.location?.coordinate.latitude ?? 0, longitude: locationService.locationManager.location?.coordinate.longitude ?? 0)
+        
+        return try await weatherService.weather(for: location)
     }
+    
+    private var descriptionSection: some View {
+        VStack {
+            if locationDataManager.authorizationStatus == .authorizedWhenInUse {
+                 Label(weatherKitManager.temp, systemImage: weatherKitManager.symbol)
+                    .task {
+                        await weatherKitManager.getWeather(latitude: locationDataManager.latitude, longitude: locationDataManager.longitude)
+                    }
+            } else {
+                Text("Konum bilgisi yok.")
+            }
+        }
+    }
+
     
     private var actionButtonsSection: some View {
         VStack(spacing: 30) {
@@ -82,31 +100,6 @@ struct WelcomeView: View {
             .padding(.horizontal)
         }
         .padding(.bottom)
-    }
-    
-    private var popularDestinationsSection: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text("Popüler Şehirler")
-                .font(.headline)
-                .padding(.horizontal)
-            
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 15) {
-                    ForEach(popularDestinations, id: \.self) { destination in
-                        VStack {
-                            Image(systemName: "photo")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(height: 120)
-                                .cornerRadius(10)
-                            Text(destination)
-                                .fontWeight(.semibold)
-                        }
-                    }
-                }
-                .padding(.horizontal)
-            }
-        }
     }
 }
 
