@@ -49,7 +49,7 @@ struct CityMapModalView: View {
     
     var body: some View {
         ZStack {
-            Color.black.opacity(0.9)
+            Color.black.opacity(0.6)
                 .edgesIgnoringSafeArea(.all)
                 .onTapGesture {
                     showingCityMap = false
