@@ -49,27 +49,21 @@ struct CityMapModalView: View {
     
     var body: some View {
         ZStack {
-            Color.black.opacity(0.4)
+            Color.black.opacity(0.9)
                 .edgesIgnoringSafeArea(.all)
                 .onTapGesture {
                     showingCityMap = false
                 }
             
-            VStack {
-                Text(city?.name ?? "")
-                    .font(.headline)
+            if let coordinate = city?.coordinate {
+                MapView(coordinate: coordinate)
+                    .frame(height: 300)
+                    .cornerRadius(10)
                     .padding()
-                
-                if let coordinate = city?.coordinate {
-                    MapView(coordinate: coordinate)
-                        .frame(height: 300)
-                        .cornerRadius(10)
-                        .padding()
-                }
             }
-            .background(Color.white)
-            .cornerRadius(10)
-            .padding(.horizontal)
         }
+        .cornerRadius(10)
+        .padding(.horizontal)
     }
 }
+
