@@ -19,9 +19,7 @@ struct AirportSelectionView: View {
             VStack {
                 VStack {
                     VStack {
-                        TextField("Havalimanı ara", text: $searchTerm)
-                            .textFieldStyle(.roundedBorder)
-                            .padding()
+                        SearchBarView(searchText: $searchTerm)
                             .onChange(of: searchTerm) { searchTerm in
                                 viewModel.searchAirport(searchTerm: searchTerm.lowercased(with: Locale(identifier: "tr")))
                             }
