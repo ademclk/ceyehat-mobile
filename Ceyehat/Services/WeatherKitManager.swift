@@ -27,11 +27,11 @@ import WeatherKit
     }
     
     var temp: String {
-        let temp =
-        weather?.currentWeather.temperature
-        
-        let convert = temp?.converted(to: .fahrenheit).description
-        return convert ?? "Hava durumu bilgisi alınıyor..."
-        
+        if let temp = weather?.currentWeather.temperature.converted(to: .celsius) {
+            let formattedTemp = String(format: "%.1f", temp.value)
+            return "\(formattedTemp)°C"
+        } else {
+            return "Hava durumu bilgisi alınıyor..."
+        }
     }
 }
