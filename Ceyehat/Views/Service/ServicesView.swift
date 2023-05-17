@@ -24,7 +24,7 @@ struct ServicesView: View {
                                 Spacer()
                                 Text("En iyi otellerde konaklayın").font(.subheadline)
                             }
-                            .padding(.vertical)
+                            .padding()
                             .frame(height: 100)
                         }
                     }
@@ -41,7 +41,7 @@ struct ServicesView: View {
                                 Spacer()
                                 Text("İstediğiniz aracı kiralayın").font(.subheadline)
                             }
-                            .padding(.vertical)
+                            .padding()
                             .frame(height: 100)
                         }
                     }
@@ -59,7 +59,7 @@ struct ServicesView: View {
                                 Spacer()
                                 Text("Hızlı ve güvenli taksi çağırın").font(.subheadline)
                             }
-                            .padding(.vertical)
+                            .padding()
                             .frame(height: 100)
                         }
                     }
@@ -76,7 +76,7 @@ struct ServicesView: View {
                                 Spacer()
                                 Text("Heyecan verici turlara katılın").font(.subheadline)
                             }
-                            .padding(.vertical)
+                            .padding()
                             .frame(height: 100)
                         }
                     }
@@ -93,7 +93,7 @@ struct ServicesView: View {
                                 Spacer()
                                 Text("Tren yolculuğunu deneyin").font(.subheadline)
                             }
-                            .padding(.vertical)
+                            .padding()
                             .frame(height: 100)
                         }
                     }
@@ -110,7 +110,7 @@ struct ServicesView: View {
                                 Spacer()
                                 Text("Lezzetli yerel yemekler sipariş edin").font(.subheadline)
                             }
-                            .padding(.vertical)
+                            .padding()
                             .frame(height: 100)
                         }
                     }
@@ -127,7 +127,7 @@ struct ServicesView: View {
                                 Spacer()
                                 Text("Profesyonel bir rehberle gezin").font(.subheadline)
                             }
-                            .padding(.vertical)
+                            .padding()
                             .frame(height: 100)
                         }
                     }
@@ -144,7 +144,7 @@ struct ServicesView: View {
                                 Spacer()
                                 Text("Konser, tiyatro, festival ve daha fazlası").font(.subheadline)
                             }
-                            .padding(.vertical)
+                            .padding()
                             .frame(height: 100)
                         }
                     }
@@ -161,7 +161,7 @@ struct ServicesView: View {
                                 Spacer()
                                 Text("Gezinizi kolaylıkla planlayın").font(.subheadline)
                             }
-                            .padding(.vertical)
+                            .padding()
                             .frame(height: 100)
                         }
                     }
