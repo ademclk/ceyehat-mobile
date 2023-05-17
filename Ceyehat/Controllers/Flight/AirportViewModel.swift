@@ -15,6 +15,8 @@ class AirportViewModel: ObservableObject {
     /// An array of `Airport` objects representing the airports to be displayed.
     @Published var airports: [Airport] = []
     
+    @Published var isLoading: Bool = false
+    
     /// An instance of `AirportApiClient` for making API calls related to airports.
     private let airportApiClient = AirportApiClient()
     
