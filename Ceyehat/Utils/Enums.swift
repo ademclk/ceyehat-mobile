@@ -36,6 +36,23 @@ enum PassengerType: String, CaseIterable {
     }
 }
 
+extension PassengerType {
+    var descriptionDetails: String {
+        switch self {
+        case .adult:
+            return "12 yaş üstü"
+        case .child:
+            return "2 - 11 yaş arası"
+        case .infant:
+            return "2 yaş altı"
+        case .disabled:
+            return "Engelli"
+        case .student:
+            return "Öğrenci"
+        }
+    }
+}
+
 enum PassengerTitle: String, CaseIterable {
     case mr = "Bay"
     case ms = "Bayan"
