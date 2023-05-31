@@ -15,6 +15,23 @@ struct Token: Codable {
     var expireDate: Date
     var refreshToken: String
     
+    private enum CodingKeys: String, CodingKey {
+        case accessToken, expireDate, refreshToken
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.accessToken = try container.decode(String.self, forKey: .accessToken)
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        
+        let expireDateString = try container.decode(String.self, forKey: .expireDate)
+        expireDate = dateFormatter.date(from: expireDateString)!
+        
+        self.refreshToken = try container.decode(String.self, forKey: .refreshToken)
+    }
+    
     /// Initializes a new instance of the `Token` model.
     ///
     /// - Parameters:
