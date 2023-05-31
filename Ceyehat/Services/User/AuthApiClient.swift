@@ -27,8 +27,21 @@ class AuthApiClient: BaseApiClient {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = try? JSONEncoder().encode(loginRequest)
         
-        makeAPICall(url: url, request: request, completion: completion)
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else if let data = data {
+                do {
+                    let token = try JSONDecoder().decode(Token.self, from: data)
+                    completion(.success(token))
+                } catch {
+                    completion(.failure(error))
+                }
+            }
+        }
+        task.resume()
     }
+
     
     /// Registers a new user with the provided email, password, first name, and last name.
     ///
@@ -39,7 +52,7 @@ class AuthApiClient: BaseApiClient {
     ///   - lastName: The user's last name.
     ///   - completion: The completion closure to be called when the API call is completed.
     /// - Returns: A `Token` object or an error if the API call or decoding fails.
-    func register(email: String, password: String, firstName: String, lastName: String, completion: @escaping (Result<Token, Error>) -> Void) {
+    func register(email: String, password: String, firstName: String, lastName: String, completion: @escaping (Result<Bool, Error>) -> Void) {
         let registerRequest = RegisterRequest(email: email, password: password, firstName: firstName, lastName: lastName)
         guard let url = URL(string: ApiEndpoints().getRegisterUrl()) else { return }
         var request = URLRequest(url: url)
@@ -47,7 +60,18 @@ class AuthApiClient: BaseApiClient {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = try? JSONEncoder().encode(registerRequest)
         
-        makeAPICall(url: url, request: request, completion: completion)
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else if let httpResponse = response as? HTTPURLResponse {
+                if httpResponse.statusCode == 200 {
+                    completion(.success(true))
+                } else {
+                    completion(.success(false))
+                }
+            }
+        }
+        task.resume()
     }
 }
 
