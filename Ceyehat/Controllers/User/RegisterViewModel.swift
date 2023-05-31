@@ -48,10 +48,13 @@ class RegisterViewModel: ObservableObject {
             DispatchQueue.main.async {
                 self?.isLoading = false
                 switch result {
-                case .success(let token):
-                    self?.isRegistered = true
-                    // Save token to secure storage or UserDefaults, depending on your requirements
-                    print("Token: \(token.accessToken)")
+                case .success(let isRegistered):
+                    self?.isRegistered = isRegistered
+                    if isRegistered {
+                        print("Registration successful")
+                    } else {
+                        self?.errorMessage = "Registration failed"
+                    }
                 case .failure(let error):
                     self?.errorMessage = error.localizedDescription
                 }
