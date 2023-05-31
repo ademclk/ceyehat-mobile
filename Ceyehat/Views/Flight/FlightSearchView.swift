@@ -16,9 +16,9 @@ struct FlightSearchView: View {
     @State private var passengerCount: Int = 1
     @State private var isSelectingDepartureAirport: Bool = false
     @State private var isSelectingArrivalAirport: Bool = false
-
     
-    let flightListViewModel = FlightViewModel()
+    @ObservedObject var flightViewModel = FlightViewModel()
+    @State private var navigateToFlightList: Bool = false
     
     var body: some View {
         Form {
@@ -27,9 +27,28 @@ struct FlightSearchView: View {
             
             FlightAirportPicker(departure: $selectedDepartureAirport, arrival: $selectedArrivalAirport, isSelectingDeparture: $isSelectingDepartureAirport, isSelectingArrival: $isSelectingArrivalAirport, flightType: $selectedFlightType)
             
+
             CombinedDatePicker(departureDate: $departureDate, returnDate: $returnDate, flightType: $selectedFlightType)
             
             PassengerCountView(totalPassengerCount: $passengerCount)
+            
+            NavigationLink(destination: FlightListView(
+                viewModel: flightViewModel,
+                depDate: $departureDate,
+                passengerCount: $passengerCount,
+                depAirportIataCode: selectedDepartureAirport?.iataCode ?? "Dep",
+                arrAirportIataCode: selectedArrivalAirport?.iataCode ?? "Arr",
+                retDate: returnDate)) {
+                    Text("Uçuş Ara")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color.blue)
+                        .cornerRadius(10)
+                }
+                .navigationTitle("Uçuş Ara")
+                .padding()
             
         }
         .sheet(isPresented: $isSelectingDepartureAirport) {
@@ -38,7 +57,12 @@ struct FlightSearchView: View {
         .sheet(isPresented: $isSelectingArrivalAirport) {
             AirportSelectionView(selectedAirport: $selectedArrivalAirport)
         }
+    }
     
+    func dateToString(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter.string(from: date)
     }
 }
 

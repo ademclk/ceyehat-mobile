@@ -9,16 +9,50 @@ import SwiftUI
 
 struct PassengerCountView: View {
     @Binding var totalPassengerCount: Int
+    @State private var passengerCounts: [PassengerType: Int] = [:]
     
     var body: some View {
         VStack(alignment: .center) {
             Text("Yolcular")
                 .font(.headline)
+                .foregroundColor(.primary) // Ensure text color is compatible with dark mode
+            Text("Toplam Yolcu Sayısı: \(totalPassengerCount)")
+                .font(.subheadline)
+                .foregroundColor(.gray)
             ForEach(PassengerType.allCases, id: \.self) { type in
-                PassengerStepper(type: type, count: $totalPassengerCount)
+                PassengerStepper(type: type, count: binding(for: type))
+                    .background(Color(.systemBackground)) // Use system background color to support dark mode
+                    .cornerRadius(10)
             }
         }
         .padding(.vertical)
+        .onChange(of: passengerCounts) { _ in
+            updateTotalPassengerCount()
+        }
+        .onAppear {
+            initializePassengerCounts()
+            updateTotalPassengerCount()
+        }
+    }
+    
+    private func binding(for type: PassengerType) -> Binding<Int> {
+        Binding<Int>(
+            get: { passengerCounts[type, default: 0] },
+            set: { newValue in
+                passengerCounts[type] = newValue
+                updateTotalPassengerCount()
+            }
+        )
+    }
+    
+    private func initializePassengerCounts() {
+        for type in PassengerType.allCases {
+            passengerCounts[type] = 0
+        }
+    }
+    
+    private func updateTotalPassengerCount() {
+        totalPassengerCount = passengerCounts.values.reduce(0, +)
     }
 }
 
@@ -31,20 +65,19 @@ struct PassengerStepper: View {
             VStack(alignment: .leading) {
                 Text(type.description)
                     .font(.headline)
-                Text(type.descriptionDetails)
+                    .foregroundColor(.primary) // Ensure text color is compatible with dark mode
+                Text("\(type.rawValue) Yolcu: \(count)")
                     .font(.caption)
                     .foregroundColor(.gray)
             }
             Spacer()
-            Stepper(value: $count, in: 1...9) {
+            Stepper(value: $count, in: 0...9) {
                 Text("\(count)")
-                    .foregroundColor(.black)
+                    .foregroundColor(.primary) // Ensure text color is compatible with dark mode
             }
             .labelsHidden()
             .accentColor(.blue)
         }
-        .background(Color.white)
-        .cornerRadius(10)
     }
 }
 
@@ -53,5 +86,9 @@ struct PassengerCountView_Previews: PreviewProvider {
         PassengerCountView(totalPassengerCount: .constant(1))
             .previewLayout(.sizeThatFits)
             .padding()
+            .background(Color(.systemBackground)) // Use system background color to support dark mode
+            .environment(\.colorScheme, .dark) // Preview in dark mode
     }
 }
+
+
