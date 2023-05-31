@@ -19,6 +19,7 @@ struct ApiEndpoints {
     static let GET_SEATS = "Seat/"
     static let LOGIN = "auth/login"
     static let REGISTER = "auth/register"
+    static let USER_INFO = "auth/user-info"
     
     /// Returns the URL for getting the airports.
     func getAirportUrl() -> String {
@@ -71,6 +72,10 @@ struct ApiEndpoints {
     /// Returns the URL for the register endpoint.
     func getRegisterUrl() -> String {
         return ApiEndpoints.BASE_URL + ApiEndpoints.REGISTER
+    }
+    
+    func getUserInfoUrl() -> String {
+        return ApiEndpoints.BASE_URL + ApiEndpoints.USER_INFO
     }
 }
 
