@@ -2,11 +2,10 @@
 //  KeychainWrapper.swift
 //  Ceyehat
 //
-//  Created by Adem Onur Çelik on 18.05.2023.
+//  Created by Adem Onur Çelik on 3.06.2023.
 //
 
 import Foundation
-import Security
 
 class KeychainWrapper {
     func store(_ key: String, value: String) -> Bool {
@@ -40,4 +39,3 @@ class KeychainWrapper {
         return nil
     }
 }
-
