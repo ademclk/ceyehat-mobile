@@ -94,7 +94,6 @@ struct AddPassengerView: View {
             title: title.description,
             birthDate: birthDate,
             passengerType: selectedPassengerType.description,
-            userId: nil,
             bookings: bookings
         )
         

@@ -21,7 +21,7 @@ struct PassengerCountView: View {
                 .foregroundColor(.gray)
             ForEach(PassengerType.allCases, id: \.self) { type in
                 PassengerStepper(type: type, count: binding(for: type))
-                    .background(Color(.systemBackground)) // Use system background color to support dark mode
+                    .background(Color(.systemBackground))
                     .cornerRadius(10)
             }
         }
@@ -65,7 +65,7 @@ struct PassengerStepper: View {
             VStack(alignment: .leading) {
                 Text(type.description)
                     .font(.headline)
-                    .foregroundColor(.primary) // Ensure text color is compatible with dark mode
+                    .foregroundColor(.primary)
                 Text("\(type.rawValue) Yolcu: \(count)")
                     .font(.caption)
                     .foregroundColor(.gray)
@@ -73,7 +73,7 @@ struct PassengerStepper: View {
             Spacer()
             Stepper(value: $count, in: 0...9) {
                 Text("\(count)")
-                    .foregroundColor(.primary) // Ensure text color is compatible with dark mode
+                    .foregroundColor(.primary)
             }
             .labelsHidden()
             .accentColor(.blue)
@@ -86,8 +86,8 @@ struct PassengerCountView_Previews: PreviewProvider {
         PassengerCountView(totalPassengerCount: .constant(1))
             .previewLayout(.sizeThatFits)
             .padding()
-            .background(Color(.systemBackground)) // Use system background color to support dark mode
-            .environment(\.colorScheme, .dark) // Preview in dark mode
+            .background(Color(.systemBackground))
+            .environment(\.colorScheme, .dark)
     }
 }
 

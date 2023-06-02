@@ -7,31 +7,39 @@
 
 import SwiftUI
 
-/// HomeView is the main view of the app containing a TabView with four tabs: WelcomeView, ExploreView, ServicesView, and ProfileView.
 struct HomeView: View {
     @State private var selectedTab: Int = 0
+    @EnvironmentObject var activityController: ActivityController
     
     var body: some View {
         TabView(selection: $selectedTab) {
             WelcomeView()
+                .onAppear { activityController.addActivity(action: "Navigated to WelcomeView", context: activityController.container.viewContext) }
+                .onDisappear { activityController.addActivity(action: "Navigated away from WelcomeView", context: activityController.container.viewContext) }
                 .tabItem {
                     customTabItem(title: "Ana Sayfa", imageName: selectedTab == 0 ? "house.fill" : "house")
                 }
                 .tag(0)
             
             ExploreView()
+                .onAppear { activityController.addActivity(action: "Navigated to ExploreView", context: activityController.container.viewContext) }
+                .onDisappear { activityController.addActivity(action: "Navigated away from ExploreView", context: activityController.container.viewContext) }
                 .tabItem {
                     customTabItem(title: "Keşfet", imageName: selectedTab == 1 ? "magnifyingglass.circle.fill" : "magnifyingglass.circle")
                 }
                 .tag(1)
             
             ServicesView()
+                .onAppear { activityController.addActivity(action: "Navigated to ServicesView", context: activityController.container.viewContext) }
+                .onDisappear { activityController.addActivity(action: "Navigated away from ServicesView", context: activityController.container.viewContext) }
                 .tabItem {
                     customTabItem(title: "Hizmetler", imageName: selectedTab == 2 ? "globe" : "globe")
                 }
                 .tag(2)
             
             ProfileView()
+                .onAppear { activityController.addActivity(action: "Navigated to ProfileView", context: activityController.container.viewContext) }
+                .onDisappear { activityController.addActivity(action: "Navigated away from ProfileView", context: activityController.container.viewContext) }
                 .tabItem {
                     customTabItem(title: "Profil", imageName: selectedTab == 3 ? "person.fill" : "person")
                 }
@@ -39,11 +47,6 @@ struct HomeView: View {
         }
     }
     
-    /// Creates a custom tab item with a title and an image.
-    /// - Parameters:
-    ///   - title: The title of the tab item.
-    ///   - imageName: The name of the system image for the tab item.
-    /// - Returns: A custom HStack with an image and text.
     private func customTabItem(title: String, imageName: String) -> some View {
         HStack {
             Image(systemName: imageName)
@@ -54,6 +57,9 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
+        let userActivity = ActivityController()
+        
         HomeView()
+            .environmentObject(userActivity)
     }
 }

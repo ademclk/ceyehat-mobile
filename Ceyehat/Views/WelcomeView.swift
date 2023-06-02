@@ -6,22 +6,31 @@
 //
 
 import SwiftUI
+import UIKit
 import WeatherKit
 import CoreLocation
 
 /// WelcomeView displays options to navigate to the FlightSearchView and CheckinView.
 struct WelcomeView: View {
+    @EnvironmentObject var userAuth: UserAuth
     @StateObject var locationDataManager = LocationDataManager()
-    @ObservedObject var weatherKitManager = WeatherKitManager()
-
+    @StateObject var weatherKitManager = WeatherKitManager()
+    @State private var currentOfferIndex = 0
+    @State private var currentTipIndex = 0
+    private let timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
+    
+    private var userName: String {
+        userAuth.user?.firstName ?? "Kullanıcı"
+    }
+    
     var body: some View {
         NavigationView {
             ScrollView {
                 VStack(alignment: .center, spacing: 20) {
                     welcomeSection
                     descriptionSection
-                    actionButtonsSection
                     specialOffersSection
+                    actionButtonsSection
                     travelTipsSection
                 }
                 .navigationTitle("Ceyehat")
@@ -30,133 +39,146 @@ struct WelcomeView: View {
         }
     }
     
+    // MARK: - Welcome Section
+    
     private var welcomeSection: some View {
         HStack(spacing: 15) {
-            Image(systemName: "figure.wave")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 30)
-            Text("Hoş Geldiniz!")
+            Text("Hoş Geldin, \(userName)!")
                 .font(.largeTitle)
                 .fontWeight(.bold)
         }
         .padding()
     }
     
-    private func fetchWeather() async throws -> Weather {
-        let locationService = LocationDataManager()
-        let weatherService = WeatherService()
-        let location = CLLocation(latitude: locationService.locationManager.location?.coordinate.latitude ?? 0, longitude: locationService.locationManager.location?.coordinate.longitude ?? 0)
-        
-        return try await weatherService.weather(for: location)
-    }
+    
+    // MARK: - Description Section
     
     private var descriptionSection: some View {
         VStack {
             if locationDataManager.authorizationStatus == .authorizedWhenInUse {
-                 Label(weatherKitManager.temp, systemImage: weatherKitManager.symbol)
-                    .task {
-                        await weatherKitManager.getWeather(latitude: locationDataManager.latitude, longitude: locationDataManager.longitude)
-                    }
+                if weatherKitManager.weather != nil {
+                    Label(weatherKitManager.temp, systemImage: weatherKitManager.symbol)
+                        .font(.title)
+                        .bold()
+                } else {
+                    Text("Yükleniyor...")
+                        .onAppear {
+                            if weatherKitManager.weather == nil {
+                                Task {
+                                    await weatherKitManager.getWeather(latitude: locationDataManager.latitude, longitude: locationDataManager.longitude)
+                                }
+                            }
+                        }
+                }
             } else {
-                Text("Konum bilgisi yok.")
+                Text("Konum bilgisine erişilemiyor.")
             }
         }
     }
-
+    
+    // MARK: - Action Buttons Section
     
     private var actionButtonsSection: some View {
         VStack(spacing: 30) {
-            NavigationLink(destination: FlightSearchView()) {
-                HStack {
-                    Image(systemName: "airplane")
-                        .foregroundColor(.white)
-                        .padding(.trailing)
-                    Text("Bilet al")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                }
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(Color.blue)
-                .cornerRadius(10)
-            }
-            .padding(.horizontal)
+            ActionButtonView(
+                destination: FlightSearchView(),
+                icon: "airplane",
+                title: "Bilet al",
+                actionString: "Navigated to FlightSearchView"
+            )
             
-            NavigationLink(destination: CheckinView()) {
-                HStack {
-                    Image(systemName: "checkmark.circle")
-                        .foregroundColor(.white)
-                        .padding(.trailing)
-                    Text("Check-in")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                }
-                .padding()
-                .frame(maxWidth: .infinity)
-                .background(Color.blue)
-                .cornerRadius(10)
-            }
-            .padding(.horizontal)
+            ActionButtonView(
+                destination: CheckinView(),
+                icon: "checkmark.circle",
+                title: "Check-in",
+                actionString: "Navigated to CheckinView"
+            )
         }
         .padding(.bottom)
     }
-}
-
-private var specialOffersSection: some View {
-    VStack(alignment: .leading, spacing: 10) {
-        Text("Özel Teklifler ve Promosyonlar")
-            .font(.headline)
-            .padding(.horizontal)
-        
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 15) {
-                ForEach(specialOffers, id: \.self) { offer in
-                    VStack {
-                        Image(systemName: offer.image)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(height: 120)
-                            .cornerRadius(10)
+    
+    // MARK: - Special Offers Section
+    
+    private var specialOffersSection: some View {
+        VStack(alignment: .center, spacing: 10) {
+            TabView(selection: $currentOfferIndex) {
+                ForEach(specialOffers.indices, id: \.self) { index in
+                    let offer = specialOffers[index]
+                    ZStack{
                         Text(offer.title)
-                            .fontWeight(.semibold)
+                            .zIndex(1)
+                            .font(.title)
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
+                        RoundedRectangle(cornerRadius: 15)
+                            .fill(Color(offer.color))
+                            .frame(width: 360, height: 200)
+                            .zIndex(0)
                     }
+                    .tag(index)
                 }
             }
-            .padding(.horizontal)
+            .tabViewStyle(PageTabViewStyle())
+            .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
+            .frame(height: 250)
+            .onReceive(timer) { _ in
+                let newIndex = (currentOfferIndex + 1) % specialOffers.count
+                withAnimation(.easeInOut(duration: 3)) {
+                    currentOfferIndex = newIndex
+                }
+            }
         }
     }
-}
-
-private var travelTipsSection: some View {
-    VStack(alignment: .leading, spacing: 10) {
-        Text("Seyahat İpuçları ve Haberler")
-            .font(.headline)
-            .padding(.horizontal)
-        
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 15) {
-                ForEach(sampleTravelTips) { tip in
+    
+    // MARK: - Travel Tips Section
+    
+    private var travelTipsSection: some View {
+        TabView(selection: $currentTipIndex) {
+            ForEach(sampleTravelTips.indices, id: \.self) { index in
+                let tip = sampleTravelTips[index]
+                ZStack {
                     VStack {
-                        Image(systemName: tip.image)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(height: 120)
-                            .cornerRadius(10)
                         Text(tip.title)
                             .fontWeight(.semibold)
+                            .foregroundColor(.accentColor)
+                            .padding()
+                        Image(systemName: tip.image)
+                            .font(.largeTitle)
+                            .foregroundColor(.blue)
                     }
+                    .zIndex(1)
+                    RoundedRectangle(cornerRadius: 20)
+                        .fill(.ultraThinMaterial)
+                        .frame(width: 360, height: 200)
+                        .zIndex(0)
                 }
+                .padding()
+                .frame(maxWidth: .infinity)
+                .background(Color.clear)
+                .tag(index)
             }
-            .padding(.horizontal)
+        }
+        .tabViewStyle(PageTabViewStyle())
+        .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
+        .frame(height: 250)
+        .padding(.horizontal)
+        .onReceive(timer) { _ in
+            let newIndex = (currentTipIndex + 1) % sampleTravelTips.count
+            withAnimation(.easeInOut(duration: 3)) {
+                currentTipIndex = newIndex
+            }
         }
     }
+
 }
 
-
+// MARK: - Preview
 
 struct WelcomeView_Previews: PreviewProvider {
     static var previews: some View {
-        WelcomeView()
+        let userAuth = UserAuth()
+        
+        return WelcomeView()
+            .environmentObject(userAuth)
     }
 }

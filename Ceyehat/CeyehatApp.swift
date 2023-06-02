@@ -9,12 +9,14 @@ import SwiftUI
 
 @main
 struct CeyehatApp: App {
-    let persistenceController = PersistenceController.shared
-
+    @StateObject private var userAuth = UserAuth()
+    @StateObject private var activityController = ActivityController()
+    
     var body: some Scene {
         WindowGroup {
             HomeView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(userAuth)
+                .environmentObject(activityController)
         }
     }
 }

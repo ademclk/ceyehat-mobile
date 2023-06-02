@@ -18,7 +18,6 @@ struct Passenger: Hashable, Codable {
     var title: String
     var birthDate: Date
     var passengerType: String
-    var userId: String?
     var selectedSeat: String?
     var bookings: [Booking]
 }
@@ -37,10 +36,6 @@ extension Passenger {
             "birthDate": ISO8601DateFormatter().string(from: birthDate),
             "passengerType": passengerType.codingKey.intValue ?? 0
         ]
-        
-        if let userId = userId {
-            requestFormat["userId"] = userId
-        }
         
         if let passengerTypeInt = PassengerType(rawValue: passengerType)?.intValue {
             requestFormat["passengerType"] = passengerTypeInt

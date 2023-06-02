@@ -8,15 +8,16 @@
 import Foundation
 import WeatherKit
 
-@MainActor class WeatherKitManager: ObservableObject {
-    
+class WeatherKitManager: ObservableObject {
     @Published var weather: Weather?
+    @Published var isFetchingWeather = false
     
     func getWeather(latitude: Double, longitude: Double) async {
         do {
-            weather = try await Task.detached(priority: .userInitiated) {
-                return try await WeatherService.shared.weather(for: .init(latitude: latitude, longitude: longitude))
-            }.value
+            let receivedWeather = try await WeatherService.shared.weather(for: .init(latitude: latitude, longitude: longitude))
+            DispatchQueue.main.async {
+                self.weather = receivedWeather
+            }
         } catch {
             fatalError("\(error)")
         }
@@ -31,7 +32,7 @@ import WeatherKit
             let formattedTemp = String(format: "%.1f", temp.value)
             return "\(formattedTemp)°C"
         } else {
-            return "Hava durumu bilgisi alınıyor..."
+            return "Yükleniyor..."
         }
     }
 }

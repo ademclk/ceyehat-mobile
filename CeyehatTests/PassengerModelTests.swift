@@ -17,7 +17,7 @@ class PassengerTests: XCTestCase {
         let birthDate = dateFormatter.date(from: "1995-06-15")!
         
         let booking = Booking(seatId: "12A", flightId: "12345", price: 500.0, currency: "USD", passengerType: "Adult")
-        let passenger = Passenger(name: "John", surname: "Doe", email: "john.doe@example.com", phoneNumber: "+1234567890", title: "Mr", birthDate: birthDate, passengerType: "Adult", userId: "1234", selectedSeat: "12A", bookings: [booking])
+        let passenger = Passenger(name: "John", surname: "Doe", email: "john.doe@example.com", phoneNumber: "+1234567890", title: "Mr", birthDate: birthDate, passengerType: "Adult", selectedSeat: "12A", bookings: [booking])
         
         let requestFormat = passenger.toRequestFormat()
         
@@ -28,7 +28,6 @@ class PassengerTests: XCTestCase {
         XCTAssertEqual(requestFormat["title"] as? Int, 0)
         XCTAssertEqual(requestFormat["birthDate"] as? String, "1995-06-15T00:00:00Z")
         XCTAssertEqual(requestFormat["passengerType"] as? Int, 0)
-        XCTAssertEqual(requestFormat["userId"] as? String, "1234")
         
         if let bookingsJson = requestFormat["addBookingRequests"] as? [[String: Any]], let bookingJson = bookingsJson.first {
             XCTAssertEqual(bookingJson["seatId"] as? String, "12A")

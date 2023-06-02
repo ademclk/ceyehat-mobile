@@ -34,11 +34,25 @@ class ActivityController: ObservableObject {
         activity.action = action
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .short
-        dateFormatter.timeStyle = .none
+        dateFormatter.dateStyle = .long
+        dateFormatter.timeStyle = .long
         
         let currentDate = Date()
         let formattedDate = dateFormatter.string(from: currentDate)
         activity.timestamp = dateFormatter.date(from: formattedDate)
+        
+        save(context: context)
+    }
+    
+    func fetchActivities() -> [Activity] {
+        let request: NSFetchRequest<Activity> = Activity.fetchRequest()
+        let context = container.viewContext
+        do {
+            let activities = try context.fetch(request)
+            return activities
+        } catch {
+            print("Error: Couldn't fetch activities")
+            return []
+        }
     }
 }

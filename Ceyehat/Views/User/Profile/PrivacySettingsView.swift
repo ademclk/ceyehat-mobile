@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PrivacySettingsView: View {
+    @EnvironmentObject var activityController: ActivityController
     @State private var enableAnalytics = false
     @State private var enableLocation = false
     @State private var enableLocationTracking = false
@@ -35,14 +36,35 @@ struct PrivacySettingsView: View {
             }
             .textCase(.none)
             
+            Section(header: Text("Kullanıcı Etkinliği")) {
+                List(activityController.fetchActivities(), id: \.id) { activity in
+                    VStack(alignment: .leading) {
+                        Text(activity.action ?? "")
+                        Text("\(activity.timestamp ?? Date(), formatter: privacyDateFormatter)")
+                            .font(.caption)
+                            .foregroundColor(.gray)
+                    }
+                }
+            }
+            .textCase(.none)            
         }
         .navigationTitle("Privacy Settings")
         .navigationBarTitleDisplayMode(.inline)
     }
 }
 
+let privacyDateFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateStyle = .long
+    formatter.timeStyle = .long
+    return formatter
+}()
+
 struct PrivacySettingsView_Previews: PreviewProvider {
     static var previews: some View {
+        let userActivity = ActivityController()
+        
         PrivacySettingsView()
+            .environmentObject(userActivity)
     }
 }
