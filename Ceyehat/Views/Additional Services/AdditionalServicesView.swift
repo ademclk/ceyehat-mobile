@@ -67,7 +67,7 @@ struct AdditionalServicesView_Previews: PreviewProvider {
         businessPrice: 1200.0
     )
     
-    static let bookings = [Booking(flightId: "334", price: 123.00, currency: "TRY", passengerType: "0")]
+    static let bookings = [Booking(bookingId: "", seatId: "", seatNumber: "", flightId: "", flightNumber: "", currency: "", price: 12.0, passengerType: "")]
     
     static let passenger = Passenger(name: "", surname: "", email: "", phoneNumber: "", title: "", birthDate: Date(), passengerType: "", bookings: bookings)
     
