@@ -98,7 +98,7 @@ struct SeatSelectionView_Previews: PreviewProvider {
         comfortPrice: 700.0,
         businessPrice: 1200.0
     )
-    static let bookings = [Booking(flightId: "334", price: 123.00, currency: "TRY", passengerType: "0")]
+    static let bookings = [Booking(bookingId: "", seatId: "", seatNumber: "", flightId: "", flightNumber: "", currency: "", price: 12.0, passengerType: "")]
     
     static let passenger = Passenger(name: "TEST1", surname: "", email: "a", phoneNumber: "", title: "", birthDate: Date(), passengerType: "", bookings: bookings)
     static let passenger2 = Passenger(name: "TEST2", surname: "", email: "b", phoneNumber: "", title: "", birthDate: Date(), passengerType: "", bookings: bookings)
