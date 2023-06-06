@@ -28,9 +28,7 @@ struct CombinedDatePicker: View {
                     .environment(\.locale, turkishLocale) // Set Turkish locale
             }
             .padding()
-            .background(Color(.systemBackground))
             .cornerRadius(10)
-            
             
             if flightType != .oneWay {
                 Spacer()
@@ -46,7 +44,6 @@ struct CombinedDatePicker: View {
                         .environment(\.locale, turkishLocale) // Set Turkish locale
                 }
                 .padding()
-                .background(Color(.systemBackground))
                 .cornerRadius(10)
             }
         }

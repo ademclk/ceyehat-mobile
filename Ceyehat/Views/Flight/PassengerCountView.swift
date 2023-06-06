@@ -15,13 +15,12 @@ struct PassengerCountView: View {
         VStack(alignment: .center) {
             Text("Yolcular")
                 .font(.headline)
-                .foregroundColor(.primary) // Ensure text color is compatible with dark mode
+                .foregroundColor(.primary)
             Text("Toplam Yolcu Sayısı: \(totalPassengerCount)")
                 .font(.subheadline)
                 .foregroundColor(.gray)
             ForEach(PassengerType.allCases, id: \.self) { type in
                 PassengerStepper(type: type, count: binding(for: type))
-                    .background(Color(.systemBackground))
                     .cornerRadius(10)
             }
         }
