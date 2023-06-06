@@ -25,6 +25,20 @@ struct ProfileView: View {
                     }
                     .textCase(.none)
                     
+                    Section(header: Text("Rezervasyonlar")) {
+                        NavigationLink(destination: BookingsView(bookings: userAuth.bookings ?? [])) {
+                            Text("Rezervasyonlarım")
+                        }
+                    }
+                    .textCase(.none)
+                    
+                    Section(header: Text("Biletler")) {
+                        NavigationLink(destination: FlightTicketsView(flightTickets: userAuth.flightTickets ?? [])){
+                            Text("Biletlerim")
+                        }
+                    }
+                    .textCase(.none)
+                    
                     Section(header: Text("Ayarlar")) {
                         NavigationLink(destination: AccountSettingsView()) {
                             Text("Hesap")
