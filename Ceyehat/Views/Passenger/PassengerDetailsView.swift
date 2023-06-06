@@ -136,7 +136,8 @@ struct PassengerDetailsView_Previews: PreviewProvider {
     @State static var showFlightPriceSheet = false
     @State static var selectedFlight: Flight?
     @State static var selectedPrice: Double?
-    @State static var bookings = [Booking(flightId: "334", price: 123.00, currency: "TRY", passengerType: "0")]
+    @State static var bookings = [Booking(bookingId: "", seatId: "", seatNumber: "", flightId: "", flightNumber: "", currency: "", price: 12.0, passengerType: "")]
+    
     @State static var samplePassenger = Passenger(name: "Test", surname: "Test", email: "Test", phoneNumber: "213123", title: "Adult", birthDate: Date(), passengerType: "Adult", bookings: bookings)
     
     static let sampleFlight = Flight(

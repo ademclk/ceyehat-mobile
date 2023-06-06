@@ -84,7 +84,7 @@ struct AddPassengerView: View {
     }
     
     private func savePassenger() {
-        let bookings = [Booking(seatId: "", flightId: flight?.flightNumber ?? "", price: selectedPrice ?? 0, currency: "TRY", passengerType: selectedPassengerType.description)]
+        let bookings = [Booking(bookingId: "", seatId: "", seatNumber: "", flightId: "", flightNumber: "", currency: "", price: 12.0, passengerType: "")]
         
         let passenger = Passenger(
             name: name,
@@ -110,7 +110,7 @@ struct AddPassengerView: View {
 
 struct AddPassengerView_Previews: PreviewProvider {
     static var previews: some View {
-        let bookings = [Booking(flightId: "334", price: 123.00, currency: "TRY", passengerType: "0")]
+        let bookings = [Booking(bookingId: "", seatId: "", seatNumber: "", flightId: "", flightNumber: "", currency: "", price: 12.0, passengerType: "")]
         
         let passengers = [Passenger(name: "", surname: "", email: "", phoneNumber: "", title: "", birthDate: Date(), passengerType: "", bookings: bookings)]
         
