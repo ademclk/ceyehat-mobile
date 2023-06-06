@@ -43,18 +43,13 @@ class RegisterViewModel: ObservableObject {
     func register() {
         isLoading = true
         errorMessage = ""
-        
         authApiClient.register(email: email, password: password, firstName: firstName, lastName: lastName) { [weak self] result in
             DispatchQueue.main.async {
                 self?.isLoading = false
                 switch result {
-                case .success(let isRegistered):
-                    self?.isRegistered = isRegistered
-                    if isRegistered {
-                        print("Registration successful")
-                    } else {
-                        self?.errorMessage = "Registration failed"
-                    }
+                case .success(let token):
+                    self?.isRegistered = true
+                    print("Registration successful: \(token.accessToken)")
                 case .failure(let error):
                     self?.errorMessage = error.localizedDescription
                 }
