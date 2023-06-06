@@ -52,7 +52,7 @@ class AuthApiClient: BaseApiClient {
     ///   - lastName: The user's last name.
     ///   - completion: The completion closure to be called when the API call is completed.
     /// - Returns: A `Token` object or an error if the API call or decoding fails.
-    func register(email: String, password: String, firstName: String, lastName: String, completion: @escaping (Result<Bool, Error>) -> Void) {
+    func register(email: String, password: String, firstName: String, lastName: String, completion: @escaping (Result<Token, Error>) -> Void) {
         let registerRequest = RegisterRequest(email: email, password: password, firstName: firstName, lastName: lastName)
         guard let url = URL(string: ApiEndpoints().getRegisterUrl()) else { return }
         var request = URLRequest(url: url)
@@ -63,11 +63,12 @@ class AuthApiClient: BaseApiClient {
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error {
                 completion(.failure(error))
-            } else if let httpResponse = response as? HTTPURLResponse {
-                if httpResponse.statusCode == 200 {
-                    completion(.success(true))
-                } else {
-                    completion(.success(false))
+            } else if let data = data {
+                do {
+                    let token = try JSONDecoder().decode(Token.self, from: data)
+                    completion(.success(token))
+                } catch {
+                    completion(.failure(error))
                 }
             }
         }
