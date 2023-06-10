@@ -24,7 +24,9 @@ class FlightApiClient: BaseApiClient {
     ///   - flightSearch: The flight search parameters.
     ///   - completion: The completion closure to be called when the API call is completed.
     /// - Returns: An array of `Flight` objects or an error if the API call or decoding fails.
-    func searchFlights(flightSearch: FlightSearch, completion: @escaping (Result<[Flight], Error>) -> Void) {
+    func searchFlights(
+        flightSearch: FlightSearch,
+        completion: @escaping (Result<[Flight], Error>) -> Void) {
         let url = URL(string: ApiEndpoints().searchFlightUrl())!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"

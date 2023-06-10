@@ -18,7 +18,8 @@ class AirportApiClient: BaseApiClient {
     /// - Parameters:
     ///   - completion: The completion closure to be called when the API call is completed.
     /// - Returns: An array of `Airport` objects or an error if the API call or decoding fails.
-    func getAirports(completion: @escaping (Result<[Airport], Error>) -> Void) {
+    func getAirports(
+        completion: @escaping (Result<[Airport], Error>) -> Void) {
         guard let url = URL(string: ApiEndpoints().getAirportUrl()) else {
             return
         }
@@ -33,16 +34,21 @@ class AirportApiClient: BaseApiClient {
     ///   - searchTerm: The search term to use for finding airports.
     ///   - completion: The completion closure to be called when the API call is completed.
     /// - Returns: An array of `Airport` objects or an error if the API call or decoding fails.
-    func searchAirport(searchTerm: String, completion: @escaping (Result<[Airport], Error>) -> Void) {
-        let asciiSearchTerm = searchTerm.lowercased()
-            .replacingOccurrences(of: "i", with: "i")
-            .replacingOccurrences(of: "ı", with: "i")
-            .replacingOccurrences(of: "ö", with: "o")
-            .replacingOccurrences(of: "ü", with: "u")
-            .replacingOccurrences(of: "ğ", with: "g")
-            .replacingOccurrences(of: "ş", with: "s")
+    func searchAirport(
+        searchTerm: String,
+        completion: @escaping (Result<[Airport], Error>) -> Void) {
+        let asciiSearchTerm =
+            searchTerm.lowercased()
+                .replacingOccurrences(of: "i", with: "i")
+                .replacingOccurrences(of: "ı", with: "i")
+                .replacingOccurrences(of: "ö", with: "o")
+                .replacingOccurrences(of: "ü", with: "u")
+                .replacingOccurrences(of: "ğ", with: "g")
+                .replacingOccurrences(of: "ş", with: "s")
         
-        guard let url = URL(string: ApiEndpoints().searchAirportUrl(searchTerm: asciiSearchTerm)) else {
+        guard let url = URL(string: ApiEndpoints()
+                                        .searchAirportUrl(
+                                            searchTerm: asciiSearchTerm)) else {
             return
         }
         

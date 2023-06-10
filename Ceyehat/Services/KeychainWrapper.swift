@@ -8,7 +8,9 @@
 import Foundation
 
 class KeychainWrapper {
-    func store(_ key: String, value: String) -> Bool {
+    func store(
+        _ key: String,
+        value: String) -> Bool {
         if let data = value.data(using: .utf8) {
             let query: [String: Any] = [kSecClass as String: kSecClassGenericPassword,
                                         kSecAttrAccount as String: key,
@@ -22,7 +24,8 @@ class KeychainWrapper {
         return false
     }
     
-    func retrieve(_ key: String) -> String? {
+    func retrieve(
+        _ key: String) -> String? {
         let query: [String: Any] = [kSecClass as String: kSecClassGenericPassword,
                                     kSecAttrAccount as String: key,
                                     kSecReturnData as String: kCFBooleanTrue!,

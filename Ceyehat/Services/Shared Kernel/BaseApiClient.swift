@@ -19,7 +19,10 @@ class BaseApiClient {
     ///   - request: The URLRequest to be used for the API call.
     ///   - completion: The completion closure to be called when the API call is completed.
     /// - Returns: A decoded object of the specified data type or an error if the API call or decoding fails.
-    func makeAPICall<T: Codable>(url: URL, request: URLRequest, completion: @escaping (Result<T, Error>) -> Void) {
+    func makeAPICall<T: Codable>(
+        url: URL,
+        request: URLRequest,
+        completion: @escaping (Result<T, Error>) -> Void) {
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
                 DispatchQueue.main.async {

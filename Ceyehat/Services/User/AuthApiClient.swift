@@ -19,7 +19,10 @@ class AuthApiClient: BaseApiClient {
     ///   - password: The user's password.
     ///   - completion: The completion closure to be called when the API call is completed.
     /// - Returns: A `Token` object or an error if the API call or decoding fails.
-    func login(email: String, password: String, completion: @escaping (Result<Token, Error>) -> Void) {
+    func login(
+        email: String,
+        password: String,
+        completion: @escaping (Result<Token, Error>) -> Void) {
         let loginRequest = LoginRequest(email: email, password: password)
         guard let url = URL(string: ApiEndpoints().getLoginUrl()) else { return }
         var request = URLRequest(url: url)
@@ -52,7 +55,12 @@ class AuthApiClient: BaseApiClient {
     ///   - lastName: The user's last name.
     ///   - completion: The completion closure to be called when the API call is completed.
     /// - Returns: A `Token` object or an error if the API call or decoding fails.
-    func register(email: String, password: String, firstName: String, lastName: String, completion: @escaping (Result<Token, Error>) -> Void) {
+    func register(
+        email: String,
+        password: String,
+        firstName: String,
+        lastName: String,
+        completion: @escaping (Result<Token, Error>) -> Void) {
         let registerRequest = RegisterRequest(email: email, password: password, firstName: firstName, lastName: lastName)
         guard let url = URL(string: ApiEndpoints().getRegisterUrl()) else { return }
         var request = URLRequest(url: url)

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct FlightSearchView: View {
+    @EnvironmentObject var userAuth: UserAuth
     @State private var selectedFlightType: FlightType = .oneWay
     @State private var selectedDepartureAirport: Airport? = nil
     @State private var selectedArrivalAirport: Airport? = nil

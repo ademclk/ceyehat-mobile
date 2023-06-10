@@ -19,12 +19,18 @@ class TicketApiClient: BaseApiClient {
     ///   - flightId: The flight ID as a string.
     ///   - completion: The completion closure to be called when the API call is completed.
     /// - Returns: A `FlightTicket` object or an error if the API call or decoding fails.
-    func createTicket(email: String, flightId: String, completion: @escaping (Result<FlightTicket, Error>) -> Void) {
+    func createTicket(
+        email: String,
+        flightId: String,
+        completion: @escaping (Result<FlightTicket, Error>) -> Void) {
         guard let url = URL(string: ApiEndpoints().createTicketUrl()) else {
             return
         }
         
-        let ticket = Ticket(email: email, flightId: flightId)
+        let ticket =
+            Ticket(
+                email: email,
+                flightId: flightId)
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"

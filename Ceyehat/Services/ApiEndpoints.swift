@@ -32,7 +32,8 @@ struct ApiEndpoints {
     ///
     /// - Parameter searchTerm: The search term for finding airports.
     /// - Returns: The URL for searching airports.
-    func searchAirportUrl(searchTerm: String) -> String {
+    func searchAirportUrl(
+        searchTerm: String) -> String {
         return ApiEndpoints.BASE_URL + ApiEndpoints.SEARCH_AIRPORTS + "\(searchTerm)"
     }
     
@@ -62,7 +63,9 @@ struct ApiEndpoints {
     ///   - flightNumber: The flight number.
     ///   - aircraftName: The name of the aircraft.
     /// - Returns: The URL for getting seats.
-    func getSeatUrl(flightNumber: String, aircraftName: String) -> String {
+    func getSeatUrl(
+        flightNumber: String,
+        aircraftName: String) -> String {
         return ApiEndpoints.BASE_URL + ApiEndpoints.GET_SEATS + flightNumber + "/" + aircraftName
     }
     

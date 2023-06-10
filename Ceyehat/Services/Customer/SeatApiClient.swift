@@ -19,24 +19,32 @@ class SeatApiClient: BaseApiClient {
     ///   - aircraftName: The aircraft name as a string.
     ///   - completion: The completion closure to be called when the API call is completed.
     /// - Returns: An array of `Seat` objects or an error if the API call or decoding fails.
-    func fetchSeats(flightNumber: String, aircraftName: String, completion: @escaping (Result<[Seat], Error>) -> Void) {
-        let asciiFlightNumber = flightNumber.lowercased()
-            .replacingOccurrences(of: "i", with: "i")
-            .replacingOccurrences(of: "ı", with: "i")
-            .replacingOccurrences(of: "ö", with: "o")
-            .replacingOccurrences(of: "ü", with: "u")
-            .replacingOccurrences(of: "ğ", with: "g")
-            .replacingOccurrences(of: "ş", with: "s")
+    func fetchSeats(
+        flightNumber: String,
+        aircraftName: String,
+        completion: @escaping (Result<[Seat], Error>) -> Void) {
+        let asciiFlightNumber =
+            flightNumber.lowercased()
+                .replacingOccurrences(of: "i", with: "i")
+                .replacingOccurrences(of: "ı", with: "i")
+                .replacingOccurrences(of: "ö", with: "o")
+                .replacingOccurrences(of: "ü", with: "u")
+                .replacingOccurrences(of: "ğ", with: "g")
+                .replacingOccurrences(of: "ş", with: "s")
         
-        let asciiAircraftName = aircraftName.lowercased()
-            .replacingOccurrences(of: "i", with: "i")
-            .replacingOccurrences(of: "ı", with: "i")
-            .replacingOccurrences(of: "ö", with: "o")
-            .replacingOccurrences(of: "ü", with: "u")
-            .replacingOccurrences(of: "ğ", with: "g")
-            .replacingOccurrences(of: "ş", with: "s")
+        let asciiAircraftName =
+            aircraftName.lowercased()
+                .replacingOccurrences(of: "i", with: "i")
+                .replacingOccurrences(of: "ı", with: "i")
+                .replacingOccurrences(of: "ö", with: "o")
+                .replacingOccurrences(of: "ü", with: "u")
+                .replacingOccurrences(of: "ğ", with: "g")
+                .replacingOccurrences(of: "ş", with: "s")
         
-        let urlStr = ApiEndpoints().getSeatUrl(flightNumber: asciiFlightNumber, aircraftName: asciiAircraftName)
+        let urlStr = ApiEndpoints()
+            .getSeatUrl(
+                flightNumber: asciiFlightNumber,
+                aircraftName: asciiAircraftName)
         guard let url = URL(string: urlStr) else {
             return
         }

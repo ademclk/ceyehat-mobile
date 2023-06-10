@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B25D5352A31E52A00D19E23 /* Taxi.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F8C5962A161DB600641719 /* Taxi.swift */; };
 		C200C22D2A0968EE00EE4BD0 /* Offer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C200C22C2A0968EE00EE4BD0 /* Offer.swift */; };
 		C200C22F2A09693E00EE4BD0 /* TravelTip.swift in Sources */ = {isa = PBXBuildFile; fileRef = C200C22E2A09693E00EE4BD0 /* TravelTip.swift */; };
 		C200C2312A0A4CB200EE4BD0 /* FeaturedCity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C200C2302A0A4CB200EE4BD0 /* FeaturedCity.swift */; };
@@ -118,7 +119,6 @@
 		C2F8C5902A161AB300641719 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F8C58F2A161AB300641719 /* Car.swift */; };
 		C2F8C5922A161B0300641719 /* CarRentalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F8C5912A161B0300641719 /* CarRentalView.swift */; };
 		C2F8C5952A161B9800641719 /* CarCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F8C5942A161B9800641719 /* CarCard.swift */; };
-		C2F8C5972A161DB600641719 /* Taxi.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F8C5962A161DB600641719 /* Taxi.swift */; };
 		C2F8C59A2A161DE600641719 /* TaxiCallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F8C5992A161DE600641719 /* TaxiCallView.swift */; };
 		C2F8C59C2A1671B900641719 /* Tour.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F8C59B2A1671B900641719 /* Tour.swift */; };
 		C2F8C59F2A16728D00641719 /* TourOrganizerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F8C59E2A16728D00641719 /* TourOrganizerView.swift */; };
@@ -893,6 +893,9 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
+				KnownAssetTags = (
+					New,
+				);
 				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
@@ -960,6 +963,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B25D5352A31E52A00D19E23 /* Taxi.swift in Sources */,
 				C27EF6892A086179000CA41F /* CheckinViewModel.swift in Sources */,
 				C28CE4072A2CEFA600A3224F /* FlightSegment.swift in Sources */,
 				C25E772A2A090DCB00E0D82A /* PassengerRow.swift in Sources */,
@@ -1029,7 +1033,6 @@
 				C2F8C5AA2A16744C00641719 /* TrainTicketView.swift in Sources */,
 				C24A572F2A119413006DC7EB /* Service.swift in Sources */,
 				C25E771B2A090D9F00E0D82A /* ExploreView.swift in Sources */,
-				C2F8C5972A161DB600641719 /* Taxi.swift in Sources */,
 				C27EF6772A082272000CA41F /* PassengerApiClient.swift in Sources */,
 				C27EF6232A07D3B8000CA41F /* Airport.swift in Sources */,
 				C27EF68C2A08618E000CA41F /* PassengerViewModel.swift in Sources */,

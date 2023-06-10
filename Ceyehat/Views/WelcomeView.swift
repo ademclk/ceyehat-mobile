@@ -86,6 +86,7 @@ struct WelcomeView: View {
                 title: "Bilet al",
                 actionString: "Navigated to FlightSearchView"
             )
+            .environmentObject(userAuth)
             
             ActionButtonView(
                 destination: CheckinView(),
@@ -93,6 +94,7 @@ struct WelcomeView: View {
                 title: "Check-in",
                 actionString: "Navigated to CheckinView"
             )
+            .environmentObject(userAuth)
         }
         .padding(.bottom)
     }

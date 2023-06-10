@@ -25,6 +25,8 @@ class UserAuth: ObservableObject {
         }
     }
     
+    @Published var id: String?
+    
     init() {
         if let storedToken = KeychainWrapper().retrieve("token"), !storedToken.isEmpty {
             token = Token(accessToken: storedToken, expireDate: Date(), refreshToken: "")
@@ -73,6 +75,7 @@ class UserAuth: ObservableObject {
             if let user = try? JSONDecoder().decode(User.self, from: data) {
                 DispatchQueue.main.async {
                     self?.user = user
+                    self?.id = user.id
                 }
             }
         }

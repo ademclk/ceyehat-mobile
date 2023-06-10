@@ -17,40 +17,46 @@ struct AirportRowView: View {
         }) {
             HStack {
                 VStack(alignment: .leading, spacing: 12) {
-                    Text("\(airport.iataCode)")
-                        .font(.headline)
-                        .accessibilityLabel("IATA Code: \(airport.iataCode)")
-                    
-                    Text("\(airport.cityName), \(airport.countryName)")
-                        .accessibilityLabel("City and Country: \(airport.cityName), \(airport.countryName)")
-                        .font(.callout)
-                        .foregroundColor(.primary)
-                    
+                    HStack {
+                        Text("\(airport.iataCode)")
+                            .font(.title2)
+                            .fontWeight(.bold)
+                            .foregroundColor(.accentColor)
+                            .accessibilityLabel("IATA Code: \(airport.iataCode)")
+                        Spacer()
+                        Text("\(airport.cityName), \(airport.countryName)")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                            .accessibilityLabel("City and Country: \(airport.cityName), \(airport.countryName)")
+                    }
                     Text(airport.name)
                         .font(.headline)
+                        .fontWeight(.medium)
                         .foregroundColor(.primary)
                         .accessibilityLabel("Airport Name: \(airport.name)")
                 }
                 Spacer()
                 if selectedAirport == airport {
-                    Image(systemName: "")
+                    Image(systemName: "checkmark")
                         .foregroundColor(.blue)
-                        .edgesIgnoringSafeArea(.all)
                 }
             }
+            .padding(.vertical, 10)
+            .padding(.horizontal, 16)
+            .background(selectedAirport == airport ? Color.blue.opacity(0.1) : Color.clear)
+            .cornerRadius(10)
+            .overlay(
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(selectedAirport == airport ? Color.blue : Color.clear, lineWidth: 1)
+            )
         }
-        .padding()
-        .background(selectedAirport == airport ? Color.blue.opacity(0.1) : Color.clear)
-        .cornerRadius(10)
     }
 }
-
-
 
 struct AirportRowView_Previews: PreviewProvider {
     static var previews: some View {
         let airport = Airport(name: "Test", iataCode: "Test", cityName: "Test", countryName: "Test")
         
-        AirportSelectionView(selectedAirport: .constant(airport))
+        AirportRowView(airport: airport, selectedAirport: .constant(nil))
     }
 }

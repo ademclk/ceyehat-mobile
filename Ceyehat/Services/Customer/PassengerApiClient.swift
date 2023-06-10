@@ -18,7 +18,9 @@ class PassengerApiClient: BaseApiClient {
     ///   - passenger: The `Passenger` object containing the passenger information.
     ///   - completion: The completion closure to be called when the API call is completed.
     /// - Returns: A boolean value indicating whether the operation was successful or not.
-    func sendPassengerToServer(passenger: Passenger, completion: @escaping (Bool) -> Void) {
+    func sendPassengerToServer(
+        passenger: Passenger,
+        completion: @escaping (Bool) -> Void) {
         guard let url = URL(string: ApiEndpoints().addPassengerUrl()) else {
             return
         }

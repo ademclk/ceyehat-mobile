@@ -12,7 +12,9 @@ class WeatherKitManager: ObservableObject {
     @Published var weather: Weather?
     @Published var isFetchingWeather = false
     
-    func getWeather(latitude: Double, longitude: Double) async {
+    func getWeather(
+        latitude: Double,
+        longitude: Double) async {
         do {
             let receivedWeather = try await WeatherService.shared.weather(for: .init(latitude: latitude, longitude: longitude))
             DispatchQueue.main.async {
